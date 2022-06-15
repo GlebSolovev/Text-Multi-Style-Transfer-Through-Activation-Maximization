@@ -11,6 +11,7 @@ _Презентация:_ https://docs.google.com/presentation/d/1p8rDXqzizx0ZXp
 
 ```bash
 python3 -m pip install -r requirements.txt
+python3 -m pip install git+https://github.com/PrithivirajDamodaran/Styleformer.git
 ```
 
 Для запуска тестового примера достаточно, находясь в корневой папке проекта, ввести команду:
@@ -21,6 +22,8 @@ python3 main.py
 
 ## Зависимости проекта
 
+### Классификаторы стилей
+
 Классификаторы стилей настроения, политических взглядов и гендера взяты и адаптированы из
 проекта [Style Transfer Through Back-Translation](https://github.com/shrimai/Style-Transfer-Through-Back-Translation).
 А именно, пакет `onmt`, чекпоинты моделей в директории `checkpoints` и части алгоритма запуска в `sttbt_classifier.py`.
@@ -28,3 +31,7 @@ python3 main.py
 Классификатор формальности взят и адаптирован из
 проекта [xlmr_formality_classifier](https://huggingface.co/SkolkovoInstitute/xlmr_formality_classifier), а именно,
 предобученная модель в файле `formality_classifier.py`.
+
+### Базовые подходы &mdash; трансформеры стилей
+
+Трансформер в формальный-неформальный стили: проект [Styleformer](https://github.com/PrithivirajDamodaran/Styleformer).
