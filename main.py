@@ -4,6 +4,8 @@ from classifiers.sttbt.political_classifier import PoliticalSTTBTClassifier
 from classifiers.sttbt.sentiment_classifier import SentimentSTTBTClassifier
 from classifiers.sttbt.gender_classifier import GenderSTTBTClassifier
 
+from classifiers.xlmr.formality_classifier import FormalityXLMRClassifier
+
 
 def classify_and_print_with_sttbt_classifier(classifier_cls, additional_args: Dict, title: str, text: str) -> NoReturn:
     classifier = classifier_cls(batch_size=1, **additional_args)
@@ -14,10 +16,15 @@ def classify_and_print_with_sttbt_classifier(classifier_cls, additional_args: Di
 
 def main():
     text = "democratic men are the most beautiful in the world!"
-    additional_args = {"max_text_length_in_tokens": 50, "gpu": False}
+    additional_args = {"max_text_length_in_tokens": 50}
     classify_and_print_with_sttbt_classifier(SentimentSTTBTClassifier, additional_args, "sentiment", text)
     classify_and_print_with_sttbt_classifier(GenderSTTBTClassifier, additional_args, "gender", text)
     classify_and_print_with_sttbt_classifier(PoliticalSTTBTClassifier, additional_args, "political", text)
+
+    formality_classifier = FormalityXLMRClassifier()
+    batch = formality_classifier.encode(text)
+    formality_result = formality_classifier.classify(batch)
+    print(f"\nformality: {formality_result}")
 
 
 if __name__ == '__main__':
