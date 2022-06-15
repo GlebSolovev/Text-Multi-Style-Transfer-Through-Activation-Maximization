@@ -23,7 +23,7 @@ class STTBTClassifier(ABC):
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
         model_checkpoint_path = self.get_model_checkpoint_path()
-        checkpoint = torch.load(model_checkpoint_path)
+        checkpoint = torch.load(model_checkpoint_path, map_location=self.device)
         model_opt = checkpoint['opt']
         self.src_dict = checkpoint['dicts']['src']
 

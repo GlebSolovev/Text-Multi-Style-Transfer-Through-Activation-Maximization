@@ -10,7 +10,7 @@ from torch.nn.utils.rnn import pack_padded_sequence as pack
 class ConvNet(nn.Module):
 	def __init__(self, opt, dicts):
 		super(ConvNet, self).__init__()
-	
+
 		self.num_filters = opt.num_filters
 		pooling_window_size = opt.sequence_length - opt.filter_size + 1
 		self.strides = (1, 1)
@@ -23,7 +23,7 @@ class ConvNet(nn.Module):
 		self.conv1 = nn.Conv2d(in_channels=self.word_vec_size,
 				out_channels=self.num_filters,
 				kernel_size=(opt.filter_size, 1),
-				stride=self.strides,        
+				stride=self.strides,
 				bias=True)
 		self.relu1 = nn.ReLU()
 
@@ -39,15 +39,24 @@ class ConvNet(nn.Module):
 		if opt.pre_word_vecs_enc is not None:
 			pretrained = torch.load(opt.pre_word_vecs_enc)
 			self.word_lut.weight.data.copy_(pretrained)
-	
-	def forward(self, input):
-		## src size is seq_size x batch_size x vocab_size. Most cases (50 x 64 x v)
-		## matrix multiply instead of lookup
-		emb = torch.mm(input.view(-1, input.size(2)), self.word_lut.weight)
-		emb = emb.view(-1, input.size(1), self.word_vec_size)
+
+	def forward(self, input = None, input_embeds = None):
+		if input is not None:
+			batch_size, seq_size, _ = input.shape
+		elif input_embeds is not None:
+			batch_size, seq_size, _ = input_embeds.shape
+		else:
+			raise ValueError
+
+		if input_embeds is None:
+			emb = torch.mm(input.view(-1, input.size(2)), self.word_lut.weight)
+		else:
+			batch_size, seq_size, embed_dim = input_embeds.shape
+			emb = input_embeds.view(batch_size * seq_size, embed_dim)
+		emb = emb.view(-1, batch_size, self.word_vec_size)
 		emb = emb.transpose(0, 1)
 		emb = emb.transpose(1, 2)
-		emb = emb.unsqueeze(-1)	
+		emb = emb.unsqueeze(-1)
 		h_conv = self.conv1(emb)
 		h_relu = self.relu1(h_conv)
 		h_max = self.maxpool1(h_relu)
