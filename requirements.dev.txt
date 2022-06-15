@@ -1,0 +1,10 @@
+torch
+torchtext
+numpy
+matplotlib
+scipy
+sklearn
+pandas
+datasets
+transformers
+pytorch-pretrained-bert
