@@ -20,6 +20,11 @@ python3 -m pip install git+https://github.com/PrithivirajDamodaran/Styleformer.g
 python3 main.py
 ```
 
+Для запуска трансформеров-baseline-ов необходимо перейти в папку `baseline_transformers` и ввести команду:
+```bash
+python3 main.py
+```
+
 ## Зависимости проекта
 
 ### Классификаторы стилей
@@ -35,3 +40,7 @@ python3 main.py
 ### Базовые подходы &mdash; трансформеры стилей
 
 Трансформер в формальный-неформальный стили: проект [Styleformer](https://github.com/PrithivirajDamodaran/Styleformer).
+
+Трансформер в позитивный-негативный стили:
+проект [How Positive Are You: Text Style Transfer using Adaptive Style Embedding](https://github.com/kinggodhj/How-Positive-Are-You-Text-Style-Transfer-using-Adaptive-Style-Embedding).
+А именно, файлы в пакете `hpay.internal` и адаптированный код в `sentiment_transformer.py`.
