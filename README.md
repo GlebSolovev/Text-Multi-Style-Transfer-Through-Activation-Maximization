@@ -21,6 +21,10 @@ python3 main.py
 
 ## Зависимости проекта
 
-Классификаторы стилей взяты и адаптированы из
+Классификаторы стилей настроения, политических взглядов и гендера взяты и адаптированы из
 проекта [Style Transfer Through Back-Translation](https://github.com/shrimai/Style-Transfer-Through-Back-Translation).
 А именно, пакет `onmt`, чекпоинты моделей в директории `checkpoints` и части алгоритма запуска в `sttbt_classifier.py`.
+
+Классификатор формальности взят и адаптирован из
+проекта [xlmr_formality_classifier](https://huggingface.co/SkolkovoInstitute/xlmr_formality_classifier), а именно,
+предобученная модель в файле `formality_classifier.py`.
