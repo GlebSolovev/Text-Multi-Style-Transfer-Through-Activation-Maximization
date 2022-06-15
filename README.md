@@ -14,16 +14,19 @@ python3 -m pip install -r requirements.txt
 python3 -m pip install git+https://github.com/PrithivirajDamodaran/Styleformer.git
 ```
 
-Для запуска тестового примера достаточно, находясь в корневой папке проекта, ввести команду:
+Для запуска _**тестового примера работы классификаторов**_ достаточно, находясь в корневой папке проекта, ввести команду:
 
 ```bash
 python3 main.py
 ```
 
-Для запуска трансформеров-baseline-ов необходимо перейти в папку `baseline_transformers` и ввести команду:
+Для запуска _**трансформеров-baseline-ов**_ необходимо перейти в папку `baseline_transformers` и ввести команду:
 ```bash
 python3 main.py
 ```
+
+В ноутбуке `main.ipynb` же можно найти _**реализацию основного алгоритма**_ Activation Maximization. 
+В файле `requirements.dev.txt` указаны необходимые для его исполнения библиотеки.
 
 ## Зависимости проекта
 
